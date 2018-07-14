@@ -1,13 +1,12 @@
-const UI = document.querySelectorAll('input, button, span, p');
+const UI = document.querySelectorAll('button, span, p');
 const ui = {};
 UI.forEach(elem => (ui[elem.id] = document.querySelector(`#${elem.id}`)));
-const { display, minute, second, start, stop, reset, mm, ss } = ui;
+const { display, start, stop, reset, mm, ss } = ui;
 
 let timeleft, counter, sc, mn, countdown;
 let pause = false;
 
 [start, stop, reset].forEach(btn => btn.addEventListener('click', controls));
-[minute, second].forEach(inp => inp.addEventListener('input', inputs));
 
 stop.disabled = true;
 reset.disabled = true;
@@ -15,8 +14,8 @@ reset.disabled = true;
 function init() {
   if (!pause) {
     timeleft = 60;
-    mn = +minute.value;
-    counter = timeleft - +second.value;
+    mn = +mm.textContent;
+    counter = timeleft - +ss.textContent;
     sc = timeleft - counter;
     countdown = setInterval(timer, 1000);
   } else {
@@ -29,10 +28,10 @@ function init() {
 
 function controls(e) {
   if (e.target.id == 'start') {
-    if (+minute.value || +second.value) {
+    if (+mm.textContent || +ss.textContent) {
       init();
       [stop, reset].forEach(elem => (elem.disabled = false));
-      [start, minute, second].forEach(elem => (elem.disabled = true));
+      start.disabled = true;
     } else {
       alert('nope!! -_-');
     }
@@ -45,27 +44,27 @@ function controls(e) {
     console.table({ timeleft, counter, sc, mn, countdown, pause });
   } else {
     clearInterval(countdown);
-    [start, minute, second].forEach(elem => (elem.disabled = false));
+    start.disabled = false;
     pause = false;
-    mm.innerHTML = '';
-    ss.innerHTML = '';
+    mm.innerHTML = '00';
+    ss.innerHTML = '00';
     start.innerHTML = 'Start Timer';
   }
 }
 
-function inputs(e) {
-  let val = +e.target.value;
+// function inputs(e) {
+//   let val = +e.target.value;
 
-  val < 0 || val > 60
-    ? (alert('nope!'),
-      (minute.value = ''),
-      (second.value = ''),
-      (mm.innerHTML = '00'),
-      (ss.innerHTML = '00'))
-    : e.target.id == 'minute'
-      ? (mm.innerHTML = `${val < 10 ? '0' + val : val}`)
-      : (ss.innerHTML = `${val < 10 ? '0' + val : val}`);
-}
+//   val < 0 || val > 60
+//     ? (alert('nope!'),
+//       (minute.value = ''),
+//       (second.value = ''),
+//       (mm.innerHTML = '00'),
+//       (ss.innerHTML = '00'))
+//     : e.target.id == 'minute'
+//       ? (mm.innerHTML = `${val < 10 ? '0' + val : val}`)
+//       : (ss.innerHTML = `${val < 10 ? '0' + val : val}`);
+// }
 
 function timer() {
   !counter ? mn-- : false;

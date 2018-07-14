@@ -1,0 +1,16 @@
+div {
+  position: absolute;
+  height: 200px;
+  width: 400px;
+  margin: auto 0;
+  border: 1px solid gray;
+  padding: 1em;
+  box-shadow: 2px 2px 2px 0px #c5c3c3d9;
+}
+
+#display {
+  text-align: center;
+  font-family: 'Orbitron';
+  font-size: 4em;
+  margin: 10px 0;
+}
