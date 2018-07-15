@@ -2,17 +2,14 @@ html,
 body {
   height: 100%;
   width: 100%;
+  overflow: hidden;
 }
 
 div {
   position: absolute;
   width: 420px;
   height: 200px;
-  top: 30vh;
-  left: 20vw;
-  border: 1px solid gray;
   padding: 0.2em;
-  box-shadow: 2px 2px 2px 0px #c5c3c3d9;
 }
 
 #display {
@@ -30,17 +27,17 @@ button {
   cursor: pointer;
   border-radius: 1em;
   border: none;
-  box-shadow: 2px 2px 2px 0px #817f7fd9;
+  box-shadow: 2px 2px 2px 0px rgba(128, 126, 126, 0.851);
 }
 
 button:focus {
   outline: none;
-  box-shadow: 2px 2px 2px 0px inset #817f7fd9;
+  box-shadow: 2px 2px 2px 0px inset rgba(129, 127, 127, 0.851);
 }
 
 button:disabled {
   cursor: not-allowed;
-  box-shadow: 2px 2px 2px 0px inset #817f7fd9;
+  box-shadow: inset 2px 2px 2px 0px rgba(129, 127, 127, 0.851);
 }
 
 span:focus {

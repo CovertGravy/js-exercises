@@ -1,0 +1,14 @@
+{
+  "name": "timer-electron",
+  "version": "1.0.0",
+  "description": "timer in electron",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Ashish S",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "2.0.5"
+  }
+}
