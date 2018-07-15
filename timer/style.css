@@ -6,12 +6,12 @@ body {
 
 div {
   position: absolute;
-  width: 400px;
+  width: 420px;
   height: 200px;
   top: 30vh;
   left: 20vw;
   border: 1px solid gray;
-  padding: 1em;
+  padding: 0.2em;
   box-shadow: 2px 2px 2px 0px #c5c3c3d9;
 }
 
@@ -23,19 +23,22 @@ div {
 }
 
 button {
-  margin: 20px 17px;
+  width: 76px;
+  height: 41px;
+  margin: 20px 30px;
   padding: 1em;
   cursor: pointer;
   border-radius: 1em;
   border: none;
-  box-shadow: 2px 2px 2px 0px #c5c3c3d9;
+  box-shadow: 2px 2px 2px 0px #817f7fd9;
 }
 
 button:focus {
   outline: none;
-  box-shadow: 2px 2px 2px 0px inset #c5c3c3d9;
+  box-shadow: 2px 2px 2px 0px inset #817f7fd9;
 }
 
 button:disabled {
   cursor: not-allowed;
+  box-shadow: 2px 2px 2px 0px inset #817f7fd9;
 }

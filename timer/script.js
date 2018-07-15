@@ -38,16 +38,16 @@ function controls(e) {
   } else if (e.target.id == 'stop') {
     pause = true;
     stop.disabled = true;
-    start.innerHTML = 'Resume Timer';
+    start.innerHTML = 'Resume';
     start.disabled = false;
     clearInterval(countdown);
   } else {
     clearInterval(countdown);
-    start.disabled = false;
+    [start, reset, stop].forEach(ctrl => (ctrl.disabled = true));
     pause = false;
     mm.innerHTML = '00';
     ss.innerHTML = '00';
-    start.innerHTML = 'Start Timer';
+    start.innerHTML = 'Start';
   }
 }
 
