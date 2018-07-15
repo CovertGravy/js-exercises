@@ -1,8 +1,15 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
 div {
   position: absolute;
-  height: 200px;
   width: 400px;
-  margin: auto 0;
+  height: 200px;
+  top: 30vh;
+  left: 20vw;
   border: 1px solid gray;
   padding: 1em;
   box-shadow: 2px 2px 2px 0px #c5c3c3d9;
@@ -13,4 +20,22 @@ div {
   font-family: 'Orbitron';
   font-size: 4em;
   margin: 10px 0;
+}
+
+button {
+  margin: 20px 17px;
+  padding: 1em;
+  cursor: pointer;
+  border-radius: 1em;
+  border: none;
+  box-shadow: 2px 2px 2px 0px #c5c3c3d9;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 2px 2px 2px 0px inset #c5c3c3d9;
+}
+
+button:disabled {
+  cursor: not-allowed;
 }

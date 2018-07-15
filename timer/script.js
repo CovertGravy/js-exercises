@@ -7,9 +7,9 @@ let timeleft, counter, sc, mn, countdown;
 let pause = false;
 
 [start, stop, reset].forEach(btn => btn.addEventListener('click', controls));
+[mm, ss].forEach(ms => ms.addEventListener('input', inputs));
 
-stop.disabled = true;
-reset.disabled = true;
+[start, stop, reset].forEach(ctrl => (ctrl.disabled = true));
 
 function init() {
   if (!pause) {
@@ -41,7 +41,6 @@ function controls(e) {
     start.innerHTML = 'Resume Timer';
     start.disabled = false;
     clearInterval(countdown);
-    console.table({ timeleft, counter, sc, mn, countdown, pause });
   } else {
     clearInterval(countdown);
     start.disabled = false;
@@ -52,26 +51,21 @@ function controls(e) {
   }
 }
 
-// function inputs(e) {
-//   let val = +e.target.value;
-
-//   val < 0 || val > 60
-//     ? (alert('nope!'),
-//       (minute.value = ''),
-//       (second.value = ''),
-//       (mm.innerHTML = '00'),
-//       (ss.innerHTML = '00'))
-//     : e.target.id == 'minute'
-//       ? (mm.innerHTML = `${val < 10 ? '0' + val : val}`)
-//       : (ss.innerHTML = `${val < 10 ? '0' + val : val}`);
-// }
+function inputs() {
+  start.disabled = !(+mm.textContent || +ss.textContent);
+}
 
 function timer() {
   !counter ? mn-- : false;
   counter++;
   sc = !sc
     ? ((counter = 1),
-      mn == 0 ? (clearInterval(countdown), (counter = 60)) : mn--,
+      mn == 0
+        ? (clearInterval(countdown),
+          (counter = 60),
+          (stop.disabled = true),
+          (reset.disabled = true))
+        : mn--,
       timeleft - counter)
     : timeleft - counter;
   mm.innerHTML = `${mn < 10 ? '0' + mn : mn}`;
