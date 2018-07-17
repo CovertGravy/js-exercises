@@ -4,10 +4,10 @@ body {
   width: 100%;
 }
 
-div {
+div#container {
   position: absolute;
   width: 420px;
-  height: 200px;
+  height: 182px;
   top: 30vh;
   left: 20vw;
   border: 1px solid gray;
@@ -15,11 +15,40 @@ div {
   box-shadow: 2px 2px 2px 0px #c5c3c3d9;
 }
 
+div#container::before,
+div#container::after {
+  content: '';
+  width: 420px;
+  height: 10px;
+  display: block;
+}
+
+div#container::before {
+  background-color: purple;
+}
+
+div#container::after {
+  background-color: rgb(146, 1, 1);
+}
+
+div#ssbar,
+div#mmbar {
+  width: 420px;
+  height: 10px;
+}
+
+div#mmbar {
+  background-color: indigo;
+}
+
+div#ssbar {
+  background-color: rgb(119, 2, 2);
+}
 #display {
   text-align: center;
   font-family: 'Orbitron';
   font-size: 4em;
-  margin: 10px 0;
+  margin: 0;
 }
 
 button {

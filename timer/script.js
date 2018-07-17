@@ -1,10 +1,12 @@
-const UI = document.querySelectorAll('button, span, p');
+const UI = document.querySelectorAll('button, span, p, #ssbar, #mmbar');
 const ui = {};
 UI.forEach(elem => (ui[elem.id] = document.querySelector(`#${elem.id}`)));
-const { display, start, stop, reset, mm, ss } = ui;
+const { display, start, stop, reset, mm, ss, ssbar, mmbar } = ui;
 
-let timeleft, counter, sc, mn, countdown;
+// #region timer
+let timeleft, counter, sc, mn, countdown, bar_ratio;
 let pause = false;
+ssbar.style.width = '420px';
 
 [start, stop, reset].forEach(btn => btn.addEventListener('click', controls));
 [mm, ss].forEach(ms => {
@@ -20,6 +22,7 @@ function init() {
     mn = +mm.textContent;
     counter = timeleft - +ss.textContent;
     sc = timeleft - counter;
+    bar_ratio = Math.floor(420 / sc);
     countdown = setInterval(timer, 1000);
   } else {
     mn = mn;
@@ -91,4 +94,10 @@ function timer() {
     : timeleft - counter;
   mm.innerHTML = `${mn < 10 ? '0' + mn : mn}`;
   ss.innerHTML = `${sc < 10 ? '0' + sc : sc}`;
+  
+  let s = ssbar.style.width.replace(/\D/g, '');
+  let m = mmbar.style.width.replace(/\D/g, '');
+  ssbar.style.width = `${+s - bar_ratio}px`;
+  mmbar.style.width = `${+m - bar_ratio}px`;
 }
+// #endregion timer
