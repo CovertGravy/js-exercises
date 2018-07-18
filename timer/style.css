@@ -15,7 +15,7 @@ div#container {
   box-shadow: 2px 2px 2px 0px #c5c3c3d9;
 }
 
-div#container::before,
+/* div#container::before,
 div#container::after {
   content: '';
   width: 420px;
@@ -29,7 +29,7 @@ div#container::before {
 
 div#container::after {
   background-color: rgb(146, 1, 1);
-}
+} */
 
 div#ssbar,
 div#mmbar {
@@ -38,12 +38,21 @@ div#mmbar {
 }
 
 div#mmbar {
-  background-color: indigo;
+  background-color: rgb(32, 1, 206);
 }
 
 div#ssbar {
-  background-color: rgb(119, 2, 2);
+  background-color: rgb(197, 5, 5);
 }
+
+/* span#ss::after {
+  content: 'seconds';
+  font-family: cursive;
+  font-size: 0.2em;
+  color: rgb(92, 90, 90);
+  display: inline-block;
+} */
+
 #display {
   text-align: center;
   font-family: 'Orbitron';

@@ -7,6 +7,7 @@ const { display, start, stop, reset, mm, ss, ssbar, mmbar } = ui;
 let timeleft, counter, sc, mn, countdown, bar_ratio;
 let pause = false;
 ssbar.style.width = '420px';
+mmbar.style.width = '420px';
 
 [start, stop, reset].forEach(btn => btn.addEventListener('click', controls));
 [mm, ss].forEach(ms => {
@@ -22,7 +23,9 @@ function init() {
     mn = +mm.textContent;
     counter = timeleft - +ss.textContent;
     sc = timeleft - counter;
-    bar_ratio = Math.floor(420 / sc);
+    bar_ratio = 7;
+    ssbar.style.width = `${!sc ? 420 : 7 * sc}px`;
+    mmbar.style.width = `${7 * mn}px`;
     countdown = setInterval(timer, 1000);
   } else {
     mn = mn;
@@ -54,6 +57,8 @@ function controls(e) {
     mm.innerHTML = '00';
     ss.innerHTML = '00';
     start.innerHTML = 'Start';
+    ssbar.style.width = '420px';
+    mmbar.style.width = '420px';
   }
 }
 
@@ -63,7 +68,7 @@ function inputs(e) {
   } else {
     if (e.keyCode === 38) {
       e.target.innerHTML =
-        +e.target.innerHTML >= 0
+        +e.target.innerHTML >= 0 && +e.target.innerHTML < 59
           ? +e.target.innerHTML + 1 < 10
             ? `0${+e.target.innerHTML + 1}`
             : +e.target.innerHTML + 1
@@ -82,6 +87,9 @@ function inputs(e) {
 function timer() {
   !counter ? mn-- : false;
   counter++;
+  let mw = mmbar.style.width;
+  let sw = ssbar.style.width;
+  let m;
   sc = !sc
     ? ((counter = 1),
       mn == 0
@@ -89,15 +97,16 @@ function timer() {
           (counter = 60),
           (stop.disabled = true),
           (reset.disabled = true))
-        : mn--,
+        : (mn--,
+          (m = mw.replace(/\D/g, '')),
+          (ssbar.style.width = '413px'),
+          (mmbar.style.width = `${+m - bar_ratio}px`)),
       timeleft - counter)
     : timeleft - counter;
   mm.innerHTML = `${mn < 10 ? '0' + mn : mn}`;
   ss.innerHTML = `${sc < 10 ? '0' + sc : sc}`;
-  
-  let s = ssbar.style.width.replace(/\D/g, '');
-  let m = mmbar.style.width.replace(/\D/g, '');
+
+  let s = sw.replace(/\D/g, '');
   ssbar.style.width = `${+s - bar_ratio}px`;
-  mmbar.style.width = `${+m - bar_ratio}px`;
 }
 // #endregion timer
